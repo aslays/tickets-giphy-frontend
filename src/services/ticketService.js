@@ -1,9 +1,6 @@
 import axios from 'axios';
 
-//const API_URL = 'http://localhost:3010/api/tickets';
-const API_URL = process.env.NODE_ENV === 'production' 
-  ? 'https://tickets-giphy.vercel.app/api/tickets' 
-  : 'http://localhost:3010/api/tickets';
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:3010/api/tickets';
 
 
 // Obtener todos los tickets, con filtros opcionales
