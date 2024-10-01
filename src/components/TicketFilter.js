@@ -3,11 +3,9 @@ import React, { useState } from 'react';
 const TicketFilter = ({ onFilter }) => {
   const [status, setStatus] = useState('');
   const [difficulty, setDifficulty] = useState('');
-  const [startDate, setStartDate] = useState('');
-  const [endDate, setEndDate] = useState('');
 
   const handleFilter = () => {
-    onFilter({ status, difficulty, startDate, endDate });
+    onFilter({ status, difficulty });
   };
 
   return (
