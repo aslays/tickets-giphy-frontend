@@ -13,7 +13,7 @@ const TicketFilter = ({ onFilter }) => {
   return (
     <div className="ticket-filter mb-4">
       <h4>Filtrar Tickets</h4>
-      <div className="row align-items-end"> {/* Usamos row para crear una fila con alineación al final */}
+      <div className="row align-items-end">
         {/* Filtro de Estado */}
         <div className="form-group col-md-5">
           <label htmlFor="status">Estado</label>

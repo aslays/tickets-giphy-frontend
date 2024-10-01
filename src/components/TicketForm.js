@@ -10,7 +10,7 @@ const TicketForm = ({ currentTicket, refreshTickets }) => {
     difficulty: 'Easy',
     status: 'Pending' 
   });
-
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const resetForm = () => {
@@ -29,6 +29,7 @@ const TicketForm = ({ currentTicket, refreshTickets }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
       if (currentTicket) {
         await updateTicket(currentTicket.id, formData);
@@ -41,6 +42,8 @@ const TicketForm = ({ currentTicket, refreshTickets }) => {
       navigate('/');
     } catch (error) {
       console.error('Error al crear o actualizar el ticket', error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -63,6 +66,7 @@ const TicketForm = ({ currentTicket, refreshTickets }) => {
           value={formData.name}
           onChange={handleInputChange}
           required
+          disabled={loading}
         />
       </div>
 
@@ -77,6 +81,7 @@ const TicketForm = ({ currentTicket, refreshTickets }) => {
           value={formData.description}
           onChange={handleInputChange}
           required
+          disabled={loading}
         />
       </div>
 
@@ -88,6 +93,7 @@ const TicketForm = ({ currentTicket, refreshTickets }) => {
           name="difficulty"
           value={formData.difficulty}
           onChange={handleInputChange}
+          disabled={loading}
         >
           <option value="Easy">Fácil</option>
           <option value="Medium">Medio</option>
@@ -95,7 +101,6 @@ const TicketForm = ({ currentTicket, refreshTickets }) => {
         </select>
       </div>
 
-      
       <div className="form-group mb-4">
         <label htmlFor="status">Estado del Ticket</label>
         <select
@@ -104,6 +109,7 @@ const TicketForm = ({ currentTicket, refreshTickets }) => {
           name="status"
           value={formData.status} 
           onChange={handleInputChange}
+          disabled={loading}
         >
           <option value="Pending">Pendiente</option>
           <option value="Completed">Completado</option>
@@ -111,8 +117,8 @@ const TicketForm = ({ currentTicket, refreshTickets }) => {
       </div>
 
       <div className="d-flex justify-content-end">
-        <button type="submit" className="btn btn-primary">
-          {currentTicket ? 'Actualizar Ticket' : 'Crear Ticket'}
+        <button type="submit" className="btn btn-primary" disabled={loading}>
+          {loading ? 'Cargando...' : currentTicket ? 'Actualizar Ticket' : 'Crear Ticket'}
         </button>
       </div>
     </form>
