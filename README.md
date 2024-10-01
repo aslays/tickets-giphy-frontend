@@ -1,4 +1,4 @@
-# Tickets Giphy - Backend
+# Tickets Giphy - Frontend
 
 Este es el frontend de la plataforma Tickets Giphy, desarrollada en React. La aplicación permite gestionar tickets, incluyendo la creación, edición y actualización de estado de los tickets, con integración de GIFs a través de la API de Giphy.
 
